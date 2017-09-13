@@ -14,12 +14,19 @@ export class TerminateEmployeeComponent implements OnInit {
     selectedId: number;
     employees: Employee[];
     response = '';
+    error = '';
+    hasError = false;
 
     ngOnInit(): void {
         this.employeeService.getAllEmployees().then(employees => this.employees = employees);
     }
 
     terminate() {
+        if (this.selectedId == null) {
+            this.hasError = true;
+            this.error = 'Error: no employee selected';
+            return;
+        }
         this.employeeService.delete(this.selectedId);
         this.response = 'Employee terminated!';
     }

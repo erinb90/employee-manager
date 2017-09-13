@@ -23,7 +23,8 @@
             </button>
         </form>
         <br/>
-        <div>{{response}}</div>
+        <div *ngIf="hasError" class="error">{{error}}</div>
+        <div *ngIf="!hasError">{{response}}</div>
     </md-card>
 </body>
 </html>
