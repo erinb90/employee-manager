@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Employee</title>
+</head>
+<body>
+<md-card>
+    <md-card-title>
+        Register New Employee
+    </md-card-title>
+    <form class="registration-form">
+        <md-form-field>
+            <input mdInput #firstName placeholder="First Name">
+        </md-form-field>
+        <md-form-field>
+            <input mdInput #lastName placeholder="Last Name">
+        </md-form-field>
+        <md-select placeholder="Gender" [(ngModel)]="selectedGender" name="gender">
+            <md-option *ngFor="let gender of gender" [value]="gender.value">
+                {{ gender.viewValue }}
+            </md-option>
+        </md-select>
+        <md-form-field>
+            <input mdInput #department placeholder="Department">
+        </md-form-field>
+
+    </form>
+    <button md-button (click)="register(firstName.value,lastName.value,department.value);
+                                firstName.value=''; lastName.value=''; department.value=''">
+        Submit
+    </button>
+    <div *ngIf="hasError" class="error">{{error}}</div>
+    <div *ngIf="!hasError">{{response}}</div>
+</md-card>
+
+</body>
+</html>

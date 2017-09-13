@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div *ngIf="employee">
+        <h2>Employee profile for employee {{employee.id}}</h2>
+
+        <md-card>
+            <md-card-title>{{employee.firstName}} {{employee.lastName}}</md-card-title>
+            <md-card-subtitle>Gender: {{employee.gender}}</md-card-subtitle>
+            <md-card-subtitle>Department: {{employee.department}}</md-card-subtitle>
+        </md-card>
+        <md-card>
+            <md-card-title>Update Employee Details</md-card-title>
+            <form class="registration-form">
+                <md-form-field>
+                    <input [(ngModel)]="employee.firstName" mdInput placeholder="First Name" name="firstName">
+                </md-form-field>
+                <md-form-field>
+                    <input [(ngModel)]="employee.lastName" mdInput placeholder="Last Name" name="lastName">
+                </md-form-field>
+                <md-select [(ngModel)]="employee.gender" placeholder="Gender" name="gender">
+                    <md-option *ngFor="let gender of gender" [value]="gender.value">
+                        {{ gender.viewValue }}
+                    </md-option>
+                </md-select>
+                <md-form-field>
+                    <input [(ngModel)]="employee.department" mdInput placeholder="Department" name="department">
+                </md-form-field>
+
+            </form>
+            <md-card-actions>
+                <button md-button (click)="save()">Save</button>
+                <button md-button (click)="goBack()">Back</button>
+            </md-card-actions>
+            <div *ngIf="hasError" class="error">{{error}}</div>
+            <div *ngIf="!hasError">{{response}}</div>
+        </md-card>
+    </div>
+</body>
+</html>

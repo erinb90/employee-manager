@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminate Employee</title>
+</head>
+<body>
+    <md-card>
+        <md-card-title>
+            Terminate An Employee
+        </md-card-title>
+        <md-card-subtitle>
+            Select the employee you would like to terminate:
+        </md-card-subtitle>
+        <form class="termination-form">
+            <md-select placeholder="Employee Name" [(ngModel)]="selectedId" name="id">
+                <md-option *ngFor="let employee of employees" [value]="employee.id">
+                    {{ employee.firstName }} {{ employee.lastName }}
+                </md-option>
+            </md-select>
+            <button md-button (click)="terminate()">
+                Submit
+            </button>
+        </form>
+        <br/>
+        <div>{{response}}</div>
+    </md-card>
+</body>
+</html>

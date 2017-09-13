@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of employees</title>
+</head>
+<body>
+    <h2>List of Employees</h2>
+    <div>
+        <md-table #table [dataSource]="dataSource">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Position Column -->
+            <ng-container mdColumnDef="id">
+                <md-header-cell *mdHeaderCellDef> ID </md-header-cell>
+                <md-cell *mdCellDef="let employee"> {{employee.id}} </md-cell>
+            </ng-container>
+
+            <!-- First Name Column -->
+            <ng-container mdColumnDef="first-name">
+                <md-header-cell *mdHeaderCellDef> First Name </md-header-cell>
+                <md-cell *mdCellDef="let employee"> {{employee.firstName}} </md-cell>
+            </ng-container>
+
+            <!-- Last Name Column -->
+            <ng-container mdColumnDef="last-name">
+                <md-header-cell *mdHeaderCellDef> Last Name </md-header-cell>
+                <md-cell *mdCellDef="let employee"> {{employee.lastName}} </md-cell>
+            </ng-container>
+
+            <!-- Gender -->
+            <ng-container mdColumnDef="gender">
+                <md-header-cell *mdHeaderCellDef> Gender </md-header-cell>
+                <md-cell *mdCellDef="let employee"> {{employee.gender}} </md-cell>
+            </ng-container>
+
+            <!-- Department -->
+            <ng-container mdColumnDef="department">
+                <md-header-cell *mdHeaderCellDef> Department </md-header-cell>
+                <md-cell *mdCellDef="let employee"> {{employee.department}} </md-cell>
+            </ng-container>
+
+            <!-- Profile -->
+            <ng-container mdColumnDef="profile">
+                <md-header-cell *mdHeaderCellDef> </md-header-cell>
+                <md-cell *mdCellDef="let employee">
+                    <button md-button (click)="goToProfile(employee.id)">
+                        Profile
+                    </button></md-cell>
+            </ng-container>
+
+
+            <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+            <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+        </md-table>
+    </div>
+</body>
+</html>
